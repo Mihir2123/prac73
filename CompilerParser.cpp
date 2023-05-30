@@ -54,15 +54,7 @@ ParseTree* CompilerParser::compileParameterList() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileSubroutineBody() {
-    ParseTree *compileSubroutineBody =new ParseTree("subroutineBody","");
-    mustBe("symbol","{");
-    while(have("keyword","var")){
-        compileSubroutineBody->addChild(compileClassVarDec());
-    }
-compileSubroutineBody->addChild(compileStatements());
-mustBe("symbol","}");
-return compileSubroutineBody;
-
+   return NULL;
 }
 
 /**
