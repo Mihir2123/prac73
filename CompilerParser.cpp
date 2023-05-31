@@ -82,7 +82,28 @@ ParseTree* CompilerParser::compileClassVarDec() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileSubroutine() {
-       return NULL;
+    ParseTree *w=new ParseTree("subroutine","");
+    if(!have("keyword","constructor")||!have("keyword","function")||!have("keyword","method")){
+         ParseException ParseError;
+    throw (ParseError);
+    }
+    if(mustBe("keyword","constructor")){
+ ParseTree *k=new ParseTree("keyword","constructor");
+    w->addChild(k);
+    }
+  if(mustBe("keyword","function")){
+ ParseTree *k=new ParseTree("keyword","function");
+    w->addChild(k);
+    }
+     if(mustBe("keyword","method")){
+ ParseTree *k=new ParseTree("keyword","method");
+    w->addChild(k);
+    }
+
+ 
+
+return w;
+
 }
 
 /**
@@ -98,7 +119,32 @@ ParseTree* CompilerParser::compileParameterList() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileSubroutineBody() {
-   return NULL;
+           ParseTree *z=new ParseTree("subroutineBody","");
+
+  if(mustBe("symbol","{")){
+
+    ParseTree *m=new ParseTree("symbol","{");
+
+   z->addChild(m);
+
+}
+
+while(have("keyword","var")){
+
+    z->addChild(compileVarDec());
+
+}
+
+z->addChild(compileStatements());
+
+if(mustBe("symbol","}")){
+
+    ParseTree *m=new ParseTree("symbol","}");
+
+   z->addChild(m);
+
+}
+return z;
 }
 
 /**
