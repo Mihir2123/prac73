@@ -114,14 +114,7 @@ return classs;
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileSubroutine() {
-             ParseTree *w=new ParseTree("subroutine","");
-    if(!have("keyword","constructor")||!have("keyword","function")||!have("keyword","method")){
-         ParseException ParseError;
-    throw (ParseError);
-    }
-    
- 
-return w;
+       return NULL;
 }
 
 /**
