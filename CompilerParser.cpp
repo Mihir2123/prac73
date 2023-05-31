@@ -53,6 +53,17 @@ if(mustBe("identifier","Main")){
     ParseTree *m=new ParseTree("identifier","Main");
     classt->addChild(m);
 }
+if(mustBe("symbol","{")){
+    ParseTree *m=new ParseTree("symbol","{");
+    classt->addChild(m);
+}
+if(mustBe("keyword","static")||mustBe("keyword","field")){
+    classt->addChild(compileClassVarDec());
+}
+if(mustBe("symbol","{")){
+    ParseTree *m=new ParseTree("symbol","}");
+    classt->addChild(m);
+}
 return classt;
 
 }
@@ -62,7 +73,27 @@ return classt;
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileClassVarDec() {
-    return NULL;
+         ParseTree *classs=new ParseTree("classVarDec ","");
+      if(mustBe("keyword","static")){
+    ParseTree *m=new ParseTree("keyword","static");
+    classs->addChild(m);
+}
+ if(mustBe("keyword","int")){
+    ParseTree *m=new ParseTree("keyword","int");
+    classs->addChild(m);
+}
+ if(mustBe("identifer","a")){
+    ParseTree *m=new ParseTree("identifer","a");
+    classs->addChild(m);
+}
+
+     if(mustBe("symbol",";")){
+    ParseTree *m=new ParseTree("symbol",";");
+    classs->addChild(m);
+}
+     
+return classs;
+
 }
 
 /**
