@@ -18,8 +18,7 @@ ParseTree* CompilerParser::compileProgram() {
 if(mustBe("keyword","class")){
     ParseTree *k=new ParseTree("keyword","class");
     classm->addChild(k);
-}
-if(mustBe("identifier","Main")){
+    if(mustBe("identifier","Main")){
     ParseTree *k=new ParseTree("identifier","Main");
     classm->addChild(k);
 }
@@ -30,6 +29,11 @@ if(mustBe("symbol","{")){
 if(mustBe("symbol","}")){
     ParseTree *k=new ParseTree("symbol","}");
     classm->addChild(k);
+}
+}
+else{
+    ParseException ParseError;
+    throw (ParseError);
 }
 return classm;
 
