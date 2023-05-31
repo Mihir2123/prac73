@@ -6,17 +6,13 @@
 
 using namespace std;
 
-int main(int argc, char *argv[]) {
-    /* Tokens for:
-     *     class MyClass {
-     *
-     *     }
-     */
+
+int main(){
     list<Token*> tokens;
-    tokens.push_back(new Token("keyword", "class"));
-    tokens.push_back(new Token("identifier", "MyClass"));
-    tokens.push_back(new Token("symbol", "{"));
-    tokens.push_back(new Token("symbol", "}"));
+        tokens.push_back(new Token("keyword", "class"));
+        tokens.push_back(new Token("identifier","Main"));
+           tokens.push_back(new Token("symbol","{"));
+            tokens.push_back(new Token("symbol","}"));
 
     try {
         CompilerParser parser(tokens);

@@ -14,7 +14,25 @@ CompilerParser::CompilerParser(std::list<Token*> tokens) {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileProgram() {
-    return NULL;
+     ParseTree *classm=new ParseTree("class","");
+if(mustBe("keyword","class")){
+    ParseTree *k=new ParseTree("keyword","class");
+    classm->addChild(k);
+}
+if(mustBe("identifier","Main")){
+    ParseTree *k=new ParseTree("identifier","Main");
+    classm->addChild(k);
+}
+if(mustBe("symbol","{")){
+    ParseTree *k=new ParseTree("symbol","{");
+    classm->addChild(k);
+}
+if(mustBe("symbol","}")){
+    ParseTree *k=new ParseTree("symbol","}");
+    classm->addChild(k);
+}
+return classm;
+
 }
 
 /**
@@ -22,7 +40,17 @@ ParseTree* CompilerParser::compileProgram() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileClass() {
-    return NULL;
+ ParseTree *classt=new ParseTree("class","");
+if(mustBe("keyword","class")){
+    ParseTree *m=new ParseTree("keyword","class");
+    classt->addChild(m);
+}
+if(mustBe("identifier","Main")){
+    ParseTree *m=new ParseTree("identifier","Main");
+    classt->addChild(m);
+}
+return classt;
+
 }
 
 /**
@@ -54,7 +82,17 @@ ParseTree* CompilerParser::compileParameterList() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileSubroutineBody() {
-   return NULL;
+       ParseTree* subroutineBodyTree = new ParseTree("keyword", "SubroutineBody");
+
+    mustBe("Symbol", "{");
+
+    while (have("keyword", "var")) {
+        subroutineBodyTree->addChild(compileVarDec());
+    }
+    subroutineBodyTree->addChild(compileStatements());
+    mustBe("symbol", "}");
+
+    return subroutineBodyTree;
 }
 
 /**
@@ -62,7 +100,7 @@ ParseTree* CompilerParser::compileSubroutineBody() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileVarDec() {
-    return NULL;
+  return NULL;
 }
 
 /**
