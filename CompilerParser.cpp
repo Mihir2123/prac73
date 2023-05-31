@@ -124,7 +124,23 @@ ParseTree* CompilerParser::compileVarDec() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileStatements() {
-    return NULL;
+     ParseTree *statement=new ParseTree("statement","");
+    while(have("keyword","let")||have("keyword","while")||have("keyword","do")||have("keyword","return")){
+        if(mustBe("keyword","let")){
+             statement->addChild(compileLet());
+        }
+           if(mustBe("keyword","while")){
+            statement->addChild(compileWhile());
+        }
+         if(mustBe("keyword","do")){
+            statement->addChild(compileDo());
+        }
+          if(mustBe("keyword","return")){
+            statement->addChild(compileReturn());
+        }
+    
+    }
+    return statement;
 }
 
 /**
