@@ -31,10 +31,7 @@ if(mustBe("symbol","}")){
     classm->addChild(k);
 }
 }
-else{
-    ParseException ParseError;
-    throw (ParseError);
-}
+
 return classm;
 
 }
@@ -60,7 +57,10 @@ if(mustBe("symbol","{")){
 if(mustBe("keyword","static")||mustBe("keyword","field")){
     classt->addChild(compileClassVarDec());
 }
-if(mustBe("symbol","}")){
+if(mustBe("keyword","constructor")||mustBe("keyword","function")||mustBe("keyword","method")){
+    classt->addChild(compileSubroutine());
+}
+if(mustBe("symbol","{")){
     ParseTree *m=new ParseTree("symbol","}");
     classt->addChild(m);
 }
@@ -73,7 +73,26 @@ return classt;
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileClassVarDec() {
-           return NULL;
+     ParseTree *classs=new ParseTree("classVarDec ","");
+      if(mustBe("keyword","static")){
+    ParseTree *m=new ParseTree("keyword","static");
+    classs->addChild(m);
+}
+ if(mustBe("keyword","int")){
+    ParseTree *m=new ParseTree("keyword","int");
+    classs->addChild(m);
+}
+ if(classs->getType()=="identifier"){
+    ParseTree *m=new ParseTree("identifer",classs->getType());
+    classs->addChild(m);
+}
+
+     if(mustBe("symbol",";")){
+    ParseTree *m=new ParseTree("symbol",";");
+    classs->addChild(m);
+}
+     
+return classs;
 
 }
 
@@ -82,17 +101,7 @@ ParseTree* CompilerParser::compileClassVarDec() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileSubroutine() {
-    ParseTree *w=new ParseTree("subroutine","");
-    if(!have("keyword","constructor")||!have("keyword","function")||!have("keyword","method")){
-         ParseException ParseError;
-    throw (ParseError);
-    }
-
-
- 
-
-return w;
-
+    return NULL;
 }
 
 /**
@@ -108,7 +117,17 @@ ParseTree* CompilerParser::compileParameterList() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileSubroutineBody() {
-return NULL;
+       ParseTree* subroutineBodyTree = new ParseTree("keyword", "SubroutineBody");
+
+    mustBe("Symbol", "{");
+
+    while (have("keyword", "var")) {
+        subroutineBodyTree->addChild(compileVarDec());
+    }
+    subroutineBodyTree->addChild(compileStatements());
+    mustBe("symbol", "}");
+
+    return subroutineBodyTree;
 }
 
 /**
@@ -124,26 +143,7 @@ ParseTree* CompilerParser::compileVarDec() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileStatements() {
-     ParseTree *statement=new ParseTree("statements","");
-    while(have("keyword","let")||have("keyword","while")||have("keyword","if")||have("keyword","do")||have("keyword","return")){
-        if(mustBe("keyword","let")){
-             statement->addChild(compileLet());
-        }
-           if(mustBe("keyword","while")){
-            statement->addChild(compileWhile());
-        }
-         if(mustBe("keyword","if")){
-            statement->addChild(compileIf());
-        }
-         if(mustBe("keyword","do")){
-            statement->addChild(compileDo());
-        }
-          if(mustBe("keyword","return")){
-            statement->addChild(compileReturn());
-        }
-    
-    }
-    return statement;
+    return NULL;
 }
 
 /**
@@ -151,7 +151,6 @@ ParseTree* CompilerParser::compileStatements() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileLet() {
-     ParseTree *letstatement=new ParseTree("letStatement","");
     return NULL;
 }
 
