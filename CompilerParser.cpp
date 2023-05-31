@@ -137,7 +137,19 @@ ParseTree* CompilerParser::compileParameterList() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileSubroutineBody() {
-     return NULL;
+         ParseTree *z=new ParseTree("subroutineBody","");
+  if(mustBe("symbol","{")){
+    ParseTree *m=new ParseTree("symbol","{");
+   z->addChild(m);
+}
+while(have("keyword","var")){
+    z->addChild(compileVarDec());
+}
+z->addChild(compileStatements());
+if(mustBe("symbol","}")){
+    ParseTree *m=new ParseTree("symbol","}");
+   z->addChild(m);
+}
 }
 
 /**
