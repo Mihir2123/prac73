@@ -16,12 +16,13 @@ CompilerParser::CompilerParser(std::list<Token*> tokens) {
 ParseTree* CompilerParser::compileProgram() {
 if(have("keyword","class")){
      ParseTree *m=compileClass();
+     return m;
 }
 else{
     ParseException ParseError;
     throw (ParseError);
 }
-return m;
+
 
 }
 
