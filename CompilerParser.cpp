@@ -60,7 +60,7 @@ if(mustBe("symbol","{")){
 if(mustBe("keyword","static")||mustBe("keyword","field")){
     classt->addChild(compileClassVarDec());
 }
-if(mustBe("symbol","{")){
+if(mustBe("symbol","}")){
     ParseTree *m=new ParseTree("symbol","}");
     classt->addChild(m);
 }
