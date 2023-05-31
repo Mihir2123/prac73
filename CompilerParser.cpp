@@ -125,12 +125,15 @@ ParseTree* CompilerParser::compileVarDec() {
  */
 ParseTree* CompilerParser::compileStatements() {
      ParseTree *statement=new ParseTree("statement","");
-    while(have("keyword","let")||have("keyword","while")||have("keyword","do")||have("keyword","return")){
+    while(have("keyword","let")||have("keyword","while")||have("keyword","if")||have("keyword","do")||have("keyword","return")){
         if(mustBe("keyword","let")){
              statement->addChild(compileLet());
         }
            if(mustBe("keyword","while")){
             statement->addChild(compileWhile());
+        }
+         if(mustBe("keyword","if")){
+            statement->addChild(compileIf());
         }
          if(mustBe("keyword","do")){
             statement->addChild(compileDo());
