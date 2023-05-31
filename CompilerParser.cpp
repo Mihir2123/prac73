@@ -124,7 +124,7 @@ ParseTree* CompilerParser::compileVarDec() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileStatements() {
-     ParseTree *statement=new ParseTree("statement","");
+     ParseTree *statement=new ParseTree("statements","");
     while(have("keyword","let")||have("keyword","while")||have("keyword","if")||have("keyword","do")||have("keyword","return")){
         if(mustBe("keyword","let")){
              statement->addChild(compileLet());
@@ -151,6 +151,7 @@ ParseTree* CompilerParser::compileStatements() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileLet() {
+     ParseTree *letstatement=new ParseTree("letStatement","");
     return NULL;
 }
 
