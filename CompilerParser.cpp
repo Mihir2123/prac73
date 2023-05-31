@@ -60,7 +60,7 @@ if(mustBe("symbol","{")){
 if(mustBe("keyword","static")||mustBe("keyword","field")){
     classt->addChild(compileClassVarDec());
 }
-if((have("keyword","constructor")||have("keyword","function")||have("keyword","method")){
+if((have("keyword","constructor")||have("keyword","function")||have("keyword","method"))){
     classt->addChild(compileSubroutine());
 }
 if(mustBe("symbol","}")){
