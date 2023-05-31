@@ -14,28 +14,14 @@ CompilerParser::CompilerParser(std::list<Token*> tokens) {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileProgram() {
-     ParseTree *classm=new ParseTree("class","");
-if(mustBe("keyword","class")){
-    ParseTree *k=new ParseTree("keyword","class");
-    classm->addChild(k);
-    if(mustBe("identifier","Main")){
-    ParseTree *k=new ParseTree("identifier","Main");
-    classm->addChild(k);
-}
-if(mustBe("symbol","{")){
-    ParseTree *k=new ParseTree("symbol","{");
-    classm->addChild(k);
-}
-if(mustBe("symbol","}")){
-    ParseTree *k=new ParseTree("symbol","}");
-    classm->addChild(k);
-}
+if(have("keyword","class")){
+     ParseTree *m=compileClass();
 }
 else{
     ParseException ParseError;
     throw (ParseError);
 }
-return classm;
+return m;
 
 }
 
