@@ -49,7 +49,7 @@ if(mustBe("keyword","class")){
     ParseTree *m=new ParseTree("keyword","class");
     classt->addChild(m);
 }
-if(mustBe("identifier","Main")){
+f(mustBe("identifier","Main")){
     ParseTree *m=new ParseTree("identifier","Main");
     classt->addChild(m);
 }
@@ -64,7 +64,7 @@ if(mustBe("symbol","}")){
     ParseTree *m=new ParseTree("symbol","}");
     classt->addChild(m);
 }
-return classt;
+return classt;i
 
 }
 
@@ -87,7 +87,8 @@ ParseTree* CompilerParser::compileSubroutine() {
          ParseException ParseError;
     throw (ParseError);
     }
-  
+
+
  
 
 return w;
