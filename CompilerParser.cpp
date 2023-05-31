@@ -87,19 +87,7 @@ ParseTree* CompilerParser::compileSubroutine() {
          ParseException ParseError;
     throw (ParseError);
     }
-    if(mustBe("keyword","constructor")){
- ParseTree *k=new ParseTree("keyword","constructor");
-    w->addChild(k);
-    }
-  if(mustBe("keyword","function")){
- ParseTree *k=new ParseTree("keyword","function");
-    w->addChild(k);
-    }
-     if(mustBe("keyword","method")){
- ParseTree *k=new ParseTree("keyword","method");
-    w->addChild(k);
-    }
-
+  
  
 
 return w;
