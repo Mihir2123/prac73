@@ -73,39 +73,7 @@ return classt;
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileClassVarDec() {
-         ParseTree *classs=new ParseTree("classVarDec","");
-      if(mustBe("keyword","static")){
-    ParseTree *m=new ParseTree("keyword","static");
-    classs->addChild(m);
-     if(mustBe("identifer","a")){
-    ParseTree *m=new ParseTree("identifer","a");
-    classs->addChild(m);
-}
-
-     if(mustBe("symbol",";")){
-    ParseTree *m=new ParseTree("symbol",";");
-    classs->addChild(m);
-}
-}
- if(mustBe("keyword","int")){
-    ParseTree *m=new ParseTree("keyword","int");
-    classs->addChild(m);
-     if(mustBe("identifer","a")){
-    ParseTree *m=new ParseTree("identifer","a");
-    classs->addChild(m);
-}
-
-     if(mustBe("symbol",";")){
-    ParseTree *m=new ParseTree("symbol",";");
-    classs->addChild(m);
-}
-}
-else{
-    ParseException ParseError;
-    throw (ParseError);
-}
-     
-return classs;
+           return NULL;
 
 }
 
