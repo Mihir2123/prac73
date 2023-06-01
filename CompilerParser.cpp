@@ -122,9 +122,16 @@ return NULL;
  */
 ParseTree* CompilerParser::compileVarDec() {
    ParseTree *vardec=new ParseTree("varDec","");
-    if(mustBe("keyword","var")){
-                   ParseTree *m=new ParseTree("keyword","var");
+    if(mustBe("keyword","static")||mustBe("keyword","field")){
+        if(mustBe("keyword","static")){
+ ParseTree *m=new ParseTree("keyword","static");
     vardec->addChild(m);
+        }
+        else{
+             ParseTree *m=new ParseTree("keyword","field");
+    vardec->addChild(m);
+        }
+                  
         }
     if(have("keyword","int")||have("keyword","char")||have("keyword","boolean")||have("identifier","")){
         if(have("keyword","int")){
@@ -147,7 +154,7 @@ ParseTree* CompilerParser::compileVarDec() {
     if(mustBe("identifier","")){
     ParseTree *m=new ParseTree("identifier",m->getValue());
     vardec->addChild(m);
-        }
+    }
     if(mustBe("symbol",";")){
             ParseTree *m=new ParseTree("symbol",";");
     vardec->addChild(m);
