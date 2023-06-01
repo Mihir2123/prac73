@@ -87,7 +87,7 @@ ParseTree* CompilerParser::compileVarDec() {
                ParseTree *m=mustBe("keyword","");
     vardec->addChild(m);
         }
-          if(have("identifier","")){
+      else{
                ParseTree *m=mustBe("identifier","");
     vardec->addChild(m);
         }
