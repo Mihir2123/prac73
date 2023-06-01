@@ -36,8 +36,8 @@ if(mustBe("keyword","class")){
     ParseTree *m=new ParseTree("keyword","class");
     classt->addChild(m);
 }
-if(mustBe("identifier","Main")){
-    ParseTree *m=new ParseTree("identifier","Main");
+if(have("indenitifer","")){
+    ParseTree *m=new ParseTree("identifier",classt->getValue());
     classt->addChild(m);
 }
 if(mustBe("symbol","{")){
@@ -78,6 +78,7 @@ ParseTree* CompilerParser::compileClassVarDec() {
     classvardec->addChild(m);
         }
     }
+    return classvardec;
 
 }
 
