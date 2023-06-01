@@ -37,7 +37,32 @@ else{
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileClass() {
-return NULL;
+ ParseTree *classm=new ParseTree("class","");
+ if(!have("identifier","")){
+ ParseException ParseError;
+    throw (ParseError);
+ }
+ else{
+      ParseTree *k=mustBe("identifier","");
+            classm->addChild(k);
+ } 
+ if(mustBe("symbol","{")){
+       ParseTree *k=mustBe("symbol","{");
+            classm->addChild(k);
+ }
+ while(have("keyword","field")||have("keyword","static")){
+     ParseTree *k=mustBe("keyword","");
+            classm->addChild(compileClassVarDec());
+ } 
+  while(have("keyword","constructor")||have("keyword","function")||have("keyword","method")){
+            classm->addChild(compileSubroutine());
+ } 
+ 
+  if(mustBe("symbol","}")){
+       ParseTree *k=mustBe("symbol","}");
+            classm->addChild(k);
+ }
+ return classm;
 }
 
 /**
