@@ -45,38 +45,7 @@ return NULL;
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileClassVarDec() {
-             ParseTree * classvardec=new ParseTree("classVarDec","");
-
-             if(!have("keyword","static")||!have("keyword","field")){
-
-         ParseException ParseError;
-
-    throw (ParseError);
-
-    }
-
-    else{
-
-        if(have("keyword","static")){
-
-             ParseTree *m=new ParseTree("keyword","static");
-
-    classvardec->addChild(m);
-
-        }
-
-        if(have("keyword","field")){
-
-               ParseTree *m=new ParseTree("keyword","field");
-
-    classvardec->addChild(m);
-
-        }
-
-    }
-
-    return classvardec;
-
+    return NULL;
 }
 
 /**
