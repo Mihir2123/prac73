@@ -14,7 +14,22 @@ CompilerParser::CompilerParser(std::list<Token*> tokens) {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileProgram() {
-    return NULL;
+    if(have("keyword","class")){
+
+     ParseTree *m=compileClass();
+
+     return m;
+
+}
+
+else{
+
+    ParseException ParseError;
+
+    throw (ParseError);
+
+}
+
 }
 
 /**
@@ -53,7 +68,7 @@ ParseTree* CompilerParser::compileParameterList() {
             pl->addChild(k);
         }
         else{
-                 ParseTree *k=mustBe("identifier","");
+             ParseTree *k=mustBe("identifier","");
             pl->addChild(k);
         }
 }
