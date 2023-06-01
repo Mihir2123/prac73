@@ -155,32 +155,38 @@ return w;
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileParameterList() {
-       ParseTree *pl=new ParseTree("parameterList","");
-       if(mustBe("keyword","")||mustBe("indentifier","")){
-        if(mustBe("keyword","")){
-            ParseTree *k=mustBe("keyword","");
-    pl->addChild(k);
+   ParseTree *pl=new ParseTree("parameterList","");
+       if(have("keyword","")||have("identifier","")){
+        if(have("keyword","")){
+     ParseTree *k=mustBe("keyword","");
+            pl->addChild(k);
         }
         else{
-                 ParseTree *k=mustBe("indentifier","");
-    pl->addChild(k);
+                 ParseTree *k=mustBe("identifier","");
+            pl->addChild(k);
         }
-       }
-       while(!have("symbol",",")){
-         if(have("symbol",",")){
-            ParseTree *k=mustBe("indentifier",",");
-    pl->addChild(k);
-         }
-           if(mustBe("keyword","")){
-            ParseTree *k=mustBe("keyword","");
-    pl->addChild(k);
+}
+while(i<=token.size()){
+    if(have("symbol",",")){
+     ParseTree *k=mustBe("symbol",",");
+            pl->addChild(k);
+        }
+       
+        if(have("keyword","")||have("identifier","")){
+        if(have("keyword","")){
+     ParseTree *k=mustBe("keyword","");
+            pl->addChild(k);
         }
         else{
-                 ParseTree *k=mustBe("indentifier","");
-    pl->addChild(k);
+                 ParseTree *k=mustBe("identifier","");
+            pl->addChild(k);
         }
-       }
-       return pl;
+        i++;   
+}
+}
+    ParseTree *k=mustBe("identifier","");
+            pl->addChild(k);
+return pl;
 }
 
 /**
