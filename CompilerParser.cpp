@@ -45,7 +45,38 @@ return NULL;
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileClassVarDec() {
-    return NULL;
+          ParseTree * classvardec=new ParseTree("classVarDec","");
+
+             if(!have("keyword","static")||!have("keyword","field")){
+
+         ParseException ParseError;
+
+    throw (ParseError);
+
+    }
+
+    else{
+
+        if(have("keyword","static")){
+
+             ParseTree *m=new ParseTree("keyword","static");
+
+    classvardec->addChild(m);
+
+        }
+
+        if(have("keyword","field")){
+
+               ParseTree *m=new ParseTree("keyword","field");
+
+    classvardec->addChild(m);
+
+        }
+
+    }
+
+    return classvardec;
+
 }
 
 /**
@@ -53,7 +84,126 @@ ParseTree* CompilerParser::compileClassVarDec() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileSubroutine() {
-     return NULL;
+         ParseTree *w=new ParseTree("subroutine","");
+
+    if(!have("keyword","constructor")||!have("keyword","function")||!have("keyword","method")){
+
+         ParseException ParseError;
+
+    throw (ParseError);
+
+    }
+
+    else{
+
+        if(have("keyword","constructor")){
+
+                     ParseTree *m=new ParseTree("keyword","constructor");
+
+    w->addChild(m);
+
+        }
+
+        if(have("keyword","function")){
+
+              ParseTree *m=new ParseTree("keyword","function");
+
+    w->addChild(m);
+
+        }
+
+          if(have("keyword","method")){
+
+              ParseTree *m=new ParseTree("keyword","method");
+
+    w->addChild(m);
+
+        }
+
+    }
+
+        if(have("keyword","int")||have("keyword","char")||have("keyword","boolean")||have("identifier","")||have("keyword","void")){
+
+          if(have("keyword","int")){
+
+               ParseTree *m=new ParseTree("keyword","int");
+
+    w->addChild(m);
+
+        }
+
+         if(have("keyword","char")){
+
+               ParseTree *m=new ParseTree("keyword","char");
+
+    w->addChild(m);
+
+        }
+
+          if(have("keyword","boolean")){
+
+               ParseTree *m=new ParseTree("keyword","boolean");
+
+    w->addChild(m);
+
+        }
+
+          if(have("identifier","")){
+
+               ParseTree *m=new ParseTree("identifier",m->getValue());
+
+    w->addChild(m);
+
+        }
+
+         if(have("keyword","void")){
+
+               ParseTree *m=new ParseTree("keyword","void");
+
+    w->addChild(m);
+
+        }
+
+        
+
+     }
+
+     if("idetifier",""){
+
+         ParseTree *m=new ParseTree("identifier",m->getValue());
+
+    w->addChild(m);
+
+     }
+
+     if(mustBe("symbol","(")){
+
+         ParseTree *m=new ParseTree("symbol","(");
+
+    w->addChild(m);
+
+     }
+
+     w->addChild(compileParameterList());
+
+     if(mustBe("symbol",")")){
+
+           ParseTree *m=new ParseTree("symbol",")");
+
+    w->addChild(m);
+
+     }
+
+     w->addChild(compileSubroutineBody());
+
+
+    
+
+
+return w;
+
+
+
 }
 
 /**
@@ -87,7 +237,7 @@ ParseTree* CompilerParser::compileVarDec() {
                ParseTree *m=mustBe("keyword","");
     vardec->addChild(m);
         }
-      else{
+      else {
                ParseTree *m=mustBe("identifier","");
     vardec->addChild(m);
         }
