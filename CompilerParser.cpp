@@ -171,11 +171,41 @@ ParseTree* CompilerParser::compileIf() {
             ParseTree *m=new ParseTree("keyword","if");
     ifstatement->addChild(m);
      }
-     
-      if(mustBe("keyword","else")){
-            ParseTree *m=new ParseTree("keyword","else");
+       if(mustBe("symbol","(")){
+            ParseTree *m=new ParseTree("symbol","(");
     ifstatement->addChild(m);
      }
+       ifstatement->addChild(compileExpression());
+        if(mustBe("symbol",")")){
+            ParseTree *m=new ParseTree("symbol",")");
+    ifstatement->addChild(m);
+     }
+             if(mustBe("symbol","{")){
+            ParseTree *m=new ParseTree("symbol","(");
+    ifstatement->addChild(m);
+     }
+      ifstatement->addChild(compileStatements());
+  if(mustBe("symbol","}")){
+            ParseTree *m=new ParseTree("symbol","}");
+    ifstatement->addChild(m);
+     }
+
+
+     
+      if(have("keyword","else")){
+            ParseTree *m=new ParseTree("keyword","else");
+    ifstatement->addChild(m);
+     if(mustBe("symbol","{")){
+            ParseTree *m=new ParseTree("symbol","(");
+    ifstatement->addChild(m);
+     }
+      ifstatement->addChild(compileStatements());
+  if(mustBe("symbol","}")){
+            ParseTree *m=new ParseTree("symbol","}");
+    ifstatement->addChild(m);
+     }
+     }
+     return ifstatement;
 }
 
 /**
