@@ -37,54 +37,7 @@ else{
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileClass() {
-   ParseTree *classt=new ParseTree("class","");
-
-if(mustBe("keyword","class")){
-
-    ParseTree *m=new ParseTree("keyword","class");
-
-    classt->addChild(m);
-
-}
-
-if(have("indenitifer","")){
-
-    ParseTree *m=new ParseTree("identifier",classt->getValue());
-
-    classt->addChild(m);
-
-}
-
-if(mustBe("symbol","{")){
-
-    ParseTree *m=new ParseTree("symbol","{");
-
-    classt->addChild(m);
-
-}
-
-if(mustBe("keyword","static")||mustBe("keyword","field")){
-
-    classt->addChild(compileClassVarDec());
-
-}
-
-if((have("keyword","constructor")||have("keyword","function")||have("keyword","method"))){
-
-    classt->addChild(compileSubroutine());
-
-}
-
-if(mustBe("symbol","}")){
-
-    ParseTree *m=new ParseTree("symbol","}");
-
-    classt->addChild(m);
-
-}
-
-return classt;
-
+return NULL;
 }
 
 /**
@@ -131,126 +84,7 @@ ParseTree* CompilerParser::compileClassVarDec() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileSubroutine() {
-     ParseTree *w=new ParseTree("subroutine","");
-
-    if(!have("keyword","constructor")||!have("keyword","function")||!have("keyword","method")){
-
-         ParseException ParseError;
-
-    throw (ParseError);
-
-    }
-
-    else{
-
-        if(have("keyword","constructor")){
-
-                     ParseTree *m=new ParseTree("keyword","constructor");
-
-    w->addChild(m);
-
-        }
-
-        if(have("keyword","function")){
-
-              ParseTree *m=new ParseTree("keyword","function");
-
-    w->addChild(m);
-
-        }
-
-          if(have("keyword","method")){
-
-              ParseTree *m=new ParseTree("keyword","method");
-
-    w->addChild(m);
-
-        }
-
-    }
-
-        if(have("keyword","int")||have("keyword","char")||have("keyword","boolean")||have("identifier","")||have("keyword","void")){
-
-          if(have("keyword","int")){
-
-               ParseTree *m=new ParseTree("keyword","int");
-
-    w->addChild(m);
-
-        }
-
-         if(have("keyword","char")){
-
-               ParseTree *m=new ParseTree("keyword","char");
-
-    w->addChild(m);
-
-        }
-
-          if(have("keyword","boolean")){
-
-               ParseTree *m=new ParseTree("keyword","boolean");
-
-    w->addChild(m);
-
-        }
-
-          if(have("identifier","")){
-
-               ParseTree *m=new ParseTree("identifier",m->getValue());
-
-    w->addChild(m);
-
-        }
-
-         if(have("keyword","void")){
-
-               ParseTree *m=new ParseTree("keyword","void");
-
-    w->addChild(m);
-
-        }
-
-        
-
-     }
-
-     if("idetifier",""){
-
-         ParseTree *m=new ParseTree("identifier",m->getValue());
-
-    w->addChild(m);
-
-     }
-
-     if(mustBe("symbol","(")){
-
-         ParseTree *m=new ParseTree("symbol","(");
-
-    w->addChild(m);
-
-     }
-
-     w->addChild(compileParameterList());
-
-     if(mustBe("symbol",")")){
-
-           ParseTree *m=new ParseTree("symbol",")");
-
-    w->addChild(m);
-
-     }
-
-     w->addChild(compileSubroutineBody());
-
-
-    
-
-
-return w;
-
-
-
+     return NULL;
 }
 
 /**
@@ -258,38 +92,7 @@ return w;
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileParameterList() {
-   ParseTree *pl=new ParseTree("parameterList","");
-       if(have("keyword","")||have("identifier","")){
-        if(have("keyword","")){
-     ParseTree *k=mustBe("keyword","");
-            pl->addChild(k);
-        }
-        else{
-             ParseTree *k=mustBe("identifier","");
-            pl->addChild(k);
-        }
-}
-while(i<=token.size()){
-    if(have("symbol",",")){
-     ParseTree *k=mustBe("symbol",",");
-            pl->addChild(k);
-        }
-       
-        if(have("keyword","")||have("identifier","")){
-        if(have("keyword","")){
-     ParseTree *k=mustBe("keyword","");
-            pl->addChild(k);
-        }
-        else{
-                 ParseTree *k=mustBe("identifier","");
-            pl->addChild(k);
-        }
-        i++;   
-}
-}
-    ParseTree *k=mustBe("identifier","");
-            pl->addChild(k);
-return pl;
+return NULL;
 }
 /**s
  * Generates a parse tree for a subroutine's body
