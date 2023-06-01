@@ -9,7 +9,7 @@
 
 class CompilerParser {
     private:
-    std::list<Token*>m;
+    std::list<Token*>token;
     Token*r;
     public:
         CompilerParser(std::list<Token*> tokens);

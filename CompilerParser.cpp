@@ -6,7 +6,7 @@
  * @param tokens A linked list of tokens to be parsed
  */
 CompilerParser::CompilerParser(std::list<Token*> tokens) {
-    m=tokens;
+    token=tokens;
 }
 
 /**
@@ -155,7 +155,32 @@ return w;
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileParameterList() {
-    return NULL;
+       ParseTree *pl=new ParseTree("parameterList","");
+       if(mustBe("keyword","")||mustBe("indentifier","")){
+        if(mustBe("keyword","")){
+            ParseTree *k=mustBe("keyword","");
+    pl->addChild(k);
+        }
+        else{
+                 ParseTree *k=mustBe("indentifier","");
+    pl->addChild(k);
+        }
+       }
+       while(!have("symbol",",")){
+         if(have("symbol",",")){
+            ParseTree *k=mustBe("indentifier",",");
+    pl->addChild(k);
+         }
+           if(mustBe("keyword","")){
+            ParseTree *k=mustBe("keyword","");
+    pl->addChild(k);
+        }
+        else{
+                 ParseTree *k=mustBe("indentifier","");
+    pl->addChild(k);
+        }
+       }
+       return pl;
 }
 
 /**
@@ -377,8 +402,8 @@ ParseTree* CompilerParser::compileExpressionList() {
  * Advance to the next token
  */
 void CompilerParser::next(){
-  if(!m.empty()){
-    m.pop_front();
+  if(!token.empty()){
+    token.pop_front();
   }
 }
 
@@ -387,8 +412,8 @@ void CompilerParser::next(){
  * @return the Token
  */
 Token* CompilerParser::current(){
-     if(!m.empty()){
-    return m.front();
+     if(!token.empty()){
+    return token.front();
   }
  return NULL;
 }
