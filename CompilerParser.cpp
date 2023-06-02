@@ -16,7 +16,8 @@ CompilerParser::CompilerParser(std::list<Token*> tokens) {
 ParseTree* CompilerParser::compileProgram() {
     if(have("keyword","class")){
      ParseTree *m=compileClass();
-     return m;}
+     return m;
+     }
 else{
     ParseException ParseError;
     throw (ParseError);
@@ -29,10 +30,15 @@ else{
  */
 ParseTree* CompilerParser::compileClass() {
  ParseTree *classm=new ParseTree("class","");
-  if(have("keyword","class")){
- ParseTree *k=mustBe("keyword","class");
-            classm->addChild(k);
+  if(!have("keyword","class")){
+      ParseException ParseError;
+
+    throw (ParseError);
  } 
+ else{
+     ParseTree *k=mustBe("keyword","class");
+            classm->addChild(k);
+ }
  if(have("identifier","")){
  ParseTree *k=mustBe("identifier","");
             classm->addChild(k);
