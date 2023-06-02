@@ -146,12 +146,7 @@ return subroutine;
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileParameterList() {
-      ParseTree *parameterlist=new ParseTree("parameterList","");
-    if(!have("keyword","static")&&!have("keyword","field")){
-            ParseException ParseError;
-    throw (ParseError);
-    }
-    else{
+  ParseTree *parameterlist=new ParseTree("parameterList","");
           if(have("keyword","")){
             ParseTree *k=mustBe("keyword","");
            parameterlist->addChild(k);
@@ -178,8 +173,8 @@ ParseTree* CompilerParser::compileParameterList() {
             parameterlist->addChild(k);
           }
           }
-    }
     return parameterlist;
+
 
 }
 /**s
