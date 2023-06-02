@@ -200,7 +200,40 @@ ParseTree* CompilerParser::compileSubroutineBody() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileVarDec() {
-    return NULL;
+      ParseTree *VarDec=new ParseTree("subroutineBody","");
+       if(have("symbol","var")){
+               ParseTree *k=mustBe("symbol","var");
+         VarDec->addChild(k);
+           }
+          if(have("keyword","")){
+            ParseTree *k=mustBe("keyword","");
+           VarDec->addChild(k);
+          }
+          if(have("identifier","")){
+             ParseTree *k=mustBe("identifier","");
+           VarDec->addChild(k);
+          }
+           if(have("identifier","")){
+             ParseTree *k=mustBe("identifier","");
+           VarDec->addChild(k);
+          }
+          while(have("symbol",",")){
+             if(have("symbol",",")){
+               ParseTree *k=mustBe("symbol",",");
+          VarDec->addChild(k);
+           }
+          if(have("identifier","")){
+             ParseTree *k=mustBe("identifier","");
+         VarDec->addChild(k);
+          }
+        }
+          
+        
+         if(have("symbol",";")){
+               ParseTree *k=mustBe("symbol",";");
+          VarDec->addChild(k);
+           }
+    return VarDec;
 }
 
 /**
