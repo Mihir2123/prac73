@@ -146,7 +146,37 @@ return subroutine;
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileParameterList() {
-  return NULL;
+      ParseTree *parameterlist=new ParseTree("parameterList","");
+    if(!have("keyword","static")&&!have("keyword","field")){
+            ParseException ParseError;
+    throw (ParseError);
+    }
+    else{
+          if(have("keyword","")){
+            ParseTree *k=mustBe("keyword","");
+           parameterlist->addChild(k);
+          }
+            if(have("keyword","")){
+            ParseTree *k=mustBe("keyword","");
+           parameterlist->addChild(k);
+          }
+          if(have("identifier","")){
+             ParseTree *k=mustBe("identifier","");
+          parameterlist->addChild(k);
+          }
+          while(have("symbol",",")){
+           if(have("symbol",",")){
+               ParseTree *k=mustBe("symbol",",");
+          parameterlist->addChild(k);
+           }
+          if(have("identifier","")){
+             ParseTree *k=mustBe("identifier","");
+            parameterlist->addChild(k);
+          }
+          }
+    }
+    return parameterlist;
+
 }
 /**s
  * Generates a parse tree for a subroutine's body
