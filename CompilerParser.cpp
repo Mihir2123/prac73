@@ -60,29 +60,7 @@ ParseTree* CompilerParser::compileClass() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileClassVarDec() {
- ParseTree *classvardec=new ParseTree("classVarDec","");
-    if(have("keyword","static")||have("keyword","field")){
-             ParseTree *R=mustBe("keyword","");
-            classvardec->addChild(R);
-             if(have("keyword","")){
-          ParseTree *R=mustBe("keyword","");
-            classvardec->addChild(R);
-    }
-     if(have("identifier","")){
-          ParseTree *R=mustBe("identifier","");
-            classvardec->addChild(R);
-    }
-      if(have("symbol",";")){
-          ParseTree *R=mustBe("symbol",";");
-            classvardec->addChild(R);
-    }
-    }
-    else{
-         ParseException ParseError;
-    throw (ParseError);
-    }
-   
-return classvardec;
+return NULL;
 
 }
 

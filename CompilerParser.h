@@ -11,7 +11,6 @@ class CompilerParser {
     private:
     std::list<Token*>token;
     Token*r;
-    int i=0;
     public:
         CompilerParser(std::list<Token*> tokens);
 
