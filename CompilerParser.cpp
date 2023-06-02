@@ -156,7 +156,7 @@ ParseTree* CompilerParser::compileParameterList() {
           parameterlist->addChild(k);
           }
           if(token.size()){
-  while(have("symbol",",")){
+              while(have("symbol",",")){
            if(have("symbol",",")){
                ParseTree *k=mustBe("symbol",",");
           parameterlist->addChild(k);
@@ -179,7 +179,20 @@ ParseTree* CompilerParser::compileParameterList() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileSubroutineBody() {
-    return NULL;
+       ParseTree *subroutinebody=new ParseTree("subroutineBody","");
+       if(have("symbol","{")){
+               ParseTree *k=mustBe("symbol","{");
+          subroutinebody->addChild(k);
+           }
+        while(have("keyword","var")){
+            subroutinebody->addChild(compileClassVarDec());
+        }
+  subroutinebody->addChild(compileStatements());
+            if(have("symbol","}")){
+               ParseTree *k=mustBe("symbol","}");
+        subroutinebody->addChild(k);
+           }
+    return subroutinebody;
 }
 
 /**
