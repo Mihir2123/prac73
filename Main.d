@@ -1,4 +1,4 @@
-obj/main.o: /Users/mihirdesai/Downloads/182054863/main.cpp \
-  /Users/mihirdesai/Downloads/182054863/CompilerParser.h \
-  /Users/mihirdesai/Downloads/182054863/ParseTree.h \
-  /Users/mihirdesai/Downloads/182054863/Token.h
+obj/Main.o: /Users/mihirdesai/Desktop/prac2/prac73/Main.cpp \
+  /Users/mihirdesai/Desktop/prac2/prac73/CompilerParser.h \
+  /Users/mihirdesai/Desktop/prac2/prac73/ParseTree.h \
+  /Users/mihirdesai/Desktop/prac2/prac73/Token.h

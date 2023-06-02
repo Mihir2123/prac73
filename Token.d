@@ -1,3 +1,3 @@
-obj/Token.o: /Users/mihirdesai/Downloads/182054863/Token.cpp \
-  /Users/mihirdesai/Downloads/182054863/Token.h \
-  /Users/mihirdesai/Downloads/182054863/ParseTree.h
+obj/Token.o: /Users/mihirdesai/Desktop/prac2/prac73/Token.cpp \
+  /Users/mihirdesai/Desktop/prac2/prac73/Token.h \
+  /Users/mihirdesai/Desktop/prac2/prac73/ParseTree.h
