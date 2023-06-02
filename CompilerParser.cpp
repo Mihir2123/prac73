@@ -70,30 +70,37 @@ ParseTree* CompilerParser::compileClass() {
  */
 ParseTree* CompilerParser::compileClassVarDec() {
     ParseTree *classvardec=new ParseTree("classVarDec","");
-   if(!have("keyword","static")||!have("keyword","field")){
+   if(!have("keyword","static")&&!have("keyword","field")){
             ParseException ParseError;
     throw (ParseError);
     }
     else{
-        while(token.size()){
-            if(have("keyword","")){
-          ParseTree *R=mustBe("keyword","");
-            classvardec->addChild(R);
-    }
-     if(have("identifier","")){
-          ParseTree *R=mustBe("identifier","");
-            classvardec->addChild(R);
-    }
-    if(have("symbol",",")){
-          ParseTree *R=mustBe("symbol",",");
-            classvardec->addChild(R);
-    }
-      if(have("symbol",";")){
-          ParseTree *R=mustBe("symbol",";");
-            classvardec->addChild(R);
-    }
+      if(have("keyword","static")||have("keyword","field")){
+          if(have("keyword","")){
+            ParseTree *k=mustBe("keyword","");
+            classvardec->addChild(k);
+          }
+          if(have("identifier","")){
+             ParseTree *k=mustBe("identifier","");
+            classvardec->addChild(k);
+          }
+          while(have("symbol",",")){
+           if(have("symbol",",")){
+               ParseTree *k=mustBe("symbol",",");
+            classvardec->addChild(k);
+           }
+          if(have("identifier","")){
+             ParseTree *k=mustBe("identifier","");
+            classvardec->addChild(k);
+          }
+          }
         }
     }
+    if(have("symbol",";")){
+         ParseTree *k=mustBe("symbol",";");
+            classvardec->addChild(k);
+    }
+    
     
 return classvardec;
 }
