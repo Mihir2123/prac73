@@ -146,11 +146,7 @@ return subroutine;
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileParameterList() {
-  ParseTree *parameterlist=new ParseTree("parameterList","");
-          if(have("keyword","")){
-            ParseTree *k=mustBe("keyword","");
-           parameterlist->addChild(k);
-          }
+      ParseTree *parameterlist=new ParseTree("parameterList","");
             if(have("keyword","")){
             ParseTree *k=mustBe("keyword","");
            parameterlist->addChild(k);
@@ -174,8 +170,6 @@ ParseTree* CompilerParser::compileParameterList() {
           }
           }
     return parameterlist;
-
-
 }
 /**s
  * Generates a parse tree for a subroutine's body
