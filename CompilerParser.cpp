@@ -200,7 +200,7 @@ ParseTree* CompilerParser::compileSubroutineBody() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileVarDec() {
-      ParseTree *VarDec=new ParseTree("subroutineBody","");
+      ParseTree *VarDec=new ParseTree("varDec","");
        if(have("symbol","var")){
                ParseTree *k=mustBe("symbol","var");
          VarDec->addChild(k);
