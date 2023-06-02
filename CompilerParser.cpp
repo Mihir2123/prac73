@@ -169,6 +169,10 @@ ParseTree* CompilerParser::compileParameterList() {
                ParseTree *k=mustBe("symbol",",");
           parameterlist->addChild(k);
            }
+             if(have("keyword","")){
+            ParseTree *k=mustBe("keyword","");
+           parameterlist->addChild(k);
+          }
           if(have("identifier","")){
              ParseTree *k=mustBe("identifier","");
             parameterlist->addChild(k);
