@@ -35,7 +35,8 @@ ParseTree* CompilerParser::compileClass() {
     throw (ParseError);
  } 
  else{
-     ParseTree *k=mustBe("keyword","class");
+    while(token.size()){
+    ParseTree *k=mustBe("keyword","class");
             classm->addChild(k);
      if(have("identifier","")){
  ParseTree *k=mustBe("identifier","");
@@ -56,6 +57,8 @@ ParseTree* CompilerParser::compileClass() {
        ParseTree *k=mustBe("symbol","}");
             classm->addChild(k);
  }
+    }
+ 
  }
 
  return classm;
