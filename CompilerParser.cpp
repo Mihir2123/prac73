@@ -70,10 +70,9 @@ ParseTree* CompilerParser::compileClassVarDec() {
     }
     else{
       if(have("keyword","static")||have("keyword","field")){
-          if(have("keyword","")){
-            ParseTree *k=mustBe("keyword","");
-            classvardec->addChild(k);
-          }
+
+            classvardec->addChild(mustBe("keyword",""););
+          
             if(have("keyword","")){
             ParseTree *k=mustBe("keyword","");
             classvardec->addChild(k);
@@ -82,12 +81,19 @@ ParseTree* CompilerParser::compileClassVarDec() {
              ParseTree *k=mustBe("identifier","");
             classvardec->addChild(k);
           }
-      }
-    }
-    if(have("symbol",";")){
-         ParseTree *k=mustBe("symbol",";");
+          while(have("symbol",",")){
+            classvardec->addChild(mustBe("symbol",","));
+          
+          if(have("identifier","")){
+             ParseTree *k=mustBe("identifier","");
             classvardec->addChild(k);
+          }
+          }
+        }
     }
+  
+            classvardec->addChild(mustBe("symbol",";"));
+    
 return classvardec;
 }
 
