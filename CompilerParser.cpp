@@ -229,7 +229,25 @@ if(have("keyword","")){
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileStatements() {
-return NULL;
+ ParseTree *Statement=new ParseTree("statements","");
+     while(token.size()){
+       if(have("keyword","if")){
+        Statement->addChild(compileIf());
+      }
+         if(have("keyword","let")){
+        Statement->addChild(compileLet());
+      }
+         if(have("keyword","while")){
+        Statement->addChild(compileWhile());
+      }
+       if(have("keyword","do")){
+        Statement->addChild(compileDo());
+      }
+       if(have("keyword","return")){
+        Statement->addChild(compileReturn());
+      }
+     }
+     return Statement;
 }
 
 /**
