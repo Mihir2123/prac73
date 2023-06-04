@@ -148,11 +148,8 @@ ParseTree* CompilerParser::compileParameterList() {
           }
           parameterlist->addChild(mustBe("identifier",""));
           while(token.size()){
-              while(have("symbol",",")){
-           if(have("symbol",",")){
-               ParseTree *k=mustBe("symbol",",");
-          parameterlist->addChild(k);
-           }
+          parameterlist->addChild(mustBe("symbol",","));
+           
              if(have("keyword","")){
             ParseTree *k=mustBe("keyword","");
            parameterlist->addChild(k);
@@ -161,7 +158,7 @@ ParseTree* CompilerParser::compileParameterList() {
              ParseTree *k=mustBe("identifier","");
             parameterlist->addChild(k);
           }
-          }
+                    parameterlist->addChild(mustBe("identifier",""));
           }
         
     return parameterlist;
