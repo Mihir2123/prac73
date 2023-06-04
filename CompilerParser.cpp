@@ -146,6 +146,7 @@ ParseTree* CompilerParser::compileParameterList() {
              ParseTree *k=mustBe("identifier","");
           parameterlist->addChild(k);
           }
+          parameterlist->addChild(mustBe("identifier",""));
           if(token.size()){
               while(have("symbol",",")){
            if(have("symbol",",")){
