@@ -81,6 +81,10 @@ ParseTree* CompilerParser::compileClassVarDec() {
              ParseTree *k=mustBe("identifier","");
             classvardec->addChild(k);
           }
+           if(have("identifier","")){
+             ParseTree *k=mustBe("identifier","");
+            classvardec->addChild(k);
+          }
           while(have("symbol",",")){
             classvardec->addChild(mustBe("symbol",","));
           

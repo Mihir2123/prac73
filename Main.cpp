@@ -6,28 +6,22 @@
 
 using namespace std;
 
-int main(int argc, char *argv[]) {
-    /* Tokens for:
-     *     class MyClass {
-     *
-     *     }
-     */
-    list<Token*> tokens;
-    tokens.push_back(new Token("keyword", "class"));
-    tokens.push_back(new Token("identifier", "MyClass"));
-    tokens.push_back(new Token("symbol", "{"));
-     tokens.push_back(new Token("keyword", "int"));
-      tokens.push_back(new Token("identifier", "a"));
-         tokens.push_back(new Token("identifier", ";"));
-    tokens.push_back(new Token("symbol", "}"));
+int main(){
+ list<Token*> tokens;
+ 
+      tokens.push_back(new Token("keyword", "field"));
+         tokens.push_back(new Token("identifier", "int"));
+         tokens.push_back(new Token("identifier", "a"));
+                tokens.push_back(new Token("symbol", ";"));
 
-    try {
+
+        try {
         CompilerParser parser(tokens);
-        ParseTree* result = parser.compileClass();
+        ParseTree* result = parser.compileClassVarDec();
         if (result != NULL){
             cout << result->tostring() << endl;
         }
-    } catch (ParseException e) {
+    }catch (ParseException e) {
         cout << "Error Parsing!" << endl;
     }
 }
