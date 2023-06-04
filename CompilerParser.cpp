@@ -85,9 +85,8 @@ ParseTree* CompilerParser::compileClassVarDec() {
              ParseTree *k=mustBe("identifier","");
             classvardec->addChild(k);
           }
-          while(have("symbol",",")){
+          while(!have("symbol",";")){
             classvardec->addChild(mustBe("symbol",","));
-          
           if(have("identifier","")){
              ParseTree *k=mustBe("identifier","");
             classvardec->addChild(k);
@@ -351,7 +350,8 @@ Token* CompilerParser::mustBe(std::string expectedType, std::string expectedValu
         return r;
     }
     else{
-       throw new ParseException();
+       ParseException a;
+        throw (a);
     }
 }
 
