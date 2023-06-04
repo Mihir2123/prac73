@@ -230,7 +230,7 @@ if(have("keyword","")){
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileStatements() {
- ParseTree *Statement=new ParseTree("statement","");
+ ParseTree *Statement=new ParseTree("statements","");
  if(have("keyword","let")){
      Statement->addChild(compileLet());
  }
