@@ -31,13 +31,11 @@ else{
 ParseTree* CompilerParser::compileClass() {
  ParseTree *classm=new ParseTree("class","");
  
- ParseTree *m=mustBe("keyword","class");
-classm->addChild(m);
- ParseTree *n=mustBe("identifier","");
-            classm->addChild(n);
+
+classm->addChild(mustBe("keyword","class"));
+            classm->addChild(mustBe("identifier",""));
  if(have("symbol","{")){
-       ParseTree *s=mustBe("symbol","{");
-            classm->addChild(s);
+            classm->addChild(mustBe("symbol","{"));
  }
  while(token.size()){
  if(have("keyword","static")||have("keyword","field")){
@@ -48,9 +46,7 @@ classm->addChild(m);
  } 
  }
 
-    
-ParseTree *k=mustBe("symbol","}");
-classm->addChild(k);
+classm->addChild(mustBe("symbol","}"));
 
  
  return classm;
