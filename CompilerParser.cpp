@@ -315,7 +315,7 @@ ParseTree* CompilerParser::compileReturn() {
 Statementreturn->addChild(compileExpression());
       }
             Statementreturn->addChild(mustBe("symbol",";"));
-            return Statementreturn
+            return Statementreturn;
 }
 
 /**
