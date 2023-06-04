@@ -229,9 +229,7 @@ if(have("keyword","")){
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileStatements() {
- ParseTree *Statement=new ParseTree("statements","");
-     
-    return NULL;
+ return NULL;
 }
 
 /**
@@ -283,7 +281,15 @@ ParseTree* CompilerParser::compileIf() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileWhile() {
-    return NULL;
+    ParseTree *Statementwhile=new ParseTree("whileStatement","");
+     Statementwhile->addChild(mustBe("keyword","while"));
+     Statementwhile->addChild(mustBe("symbol","("));
+       Statementwhile->addChild(compileExpression());
+             Statementwhile->addChild(mustBe("symbol",")"));
+               Statementwhile->addChild(mustBe("symbol","{"));
+                   Statementwhile->addChild(compileStatements());
+            Statementwhile->addChild(mustBe("symbol","}"));
+            return Statementwhile;
 }
 
 /**
@@ -303,7 +309,13 @@ ParseTree* CompilerParser::compileDo() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileReturn() {
-    return NULL;
+     ParseTree *Statementreturn=new ParseTree("returnStatement","");
+     Statementreturn->addChild(mustBe("keyword","while"));
+      while(token.size()){
+Statementreturn->addChild(compileExpression());
+      }
+            Statementreturn->addChild(mustBe("symbol",";"));
+            return Statementreturn
 }
 
 /**
