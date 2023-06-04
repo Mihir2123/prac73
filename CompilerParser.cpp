@@ -245,7 +245,7 @@ ParseTree* CompilerParser::compileLet() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileIf() {
-     ParseTree *Statementif=new ParseTree("ifStatements","");
+     ParseTree *Statementif=new ParseTree("ifStatement","");
      Statementif->addChild(mustBe("keyword","if"));
       Statementif->addChild(mustBe("symbol","("));
           Statementif->addChild(compileExpression());
@@ -278,7 +278,7 @@ ParseTree* CompilerParser::compileWhile() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileDo() {
-      ParseTree *Statementdo=new ParseTree("doStatements","");
+      ParseTree *Statementdo=new ParseTree("doStatement","");
       Statementdo->addChild(mustBe("keyword","do"));
       Statementdo->addChild(compileExpression());
          Statementdo->addChild(mustBe("symbol",";"));
