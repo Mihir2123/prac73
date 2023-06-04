@@ -237,7 +237,7 @@ return NULL;
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileLet() {
- return NULL;
+ 
 }
 
 /**
@@ -278,7 +278,11 @@ ParseTree* CompilerParser::compileWhile() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileDo() {
-    return NULL;
+      ParseTree *Statementdo=new ParseTree("doStatements","");
+      Statementdo->addChild(mustBe("keyword","do"));
+      Statementdo->addChild(compileExpression());
+         Statementdo->addChild(mustBe("symbol",";"));
+         return Statementdo;
 }
 
 /**
