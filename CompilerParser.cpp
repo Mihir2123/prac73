@@ -216,7 +216,7 @@ if(have("keyword","")){
           }
         }
          VarDec->addChild(mustBe("identifier",""));
-         while(token.size()){
+         while(have("symbol",",")){
           VarDec->addChild(mustBe("symbol",","));
             VarDec->addChild(mustBe("identifier",""));
          }
