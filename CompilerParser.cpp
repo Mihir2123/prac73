@@ -111,14 +111,22 @@ ParseTree* CompilerParser::compileSubroutine() {
     throw (ParseError);
     }
     else{
-         if(have("keyword","")){
+       if(have("keyword","")){
             ParseTree *k=mustBe("keyword","");
            subroutine->addChild(k);
           }
-          if(have("identifier","")){
-             ParseTree *k=mustBe("identifier","");
-            subroutine->addChild(k);
+            if(have("keyword","")||have("identifier","")){
+if(have("keyword","")){
+            ParseTree *k=mustBe("keyword","");
+             subroutine->addChild(k);
           }
+         else{
+             ParseTree *k=mustBe("identifier","");
+           subroutine->addChild(k);
+          }
+        }
+          
+        subroutine->addChild(mustBe("identifier",""));
        
   
          subroutine->addChild(mustBe("symbol","("));
