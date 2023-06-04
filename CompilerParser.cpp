@@ -31,7 +31,6 @@ else{
 ParseTree* CompilerParser::compileClass() {
  ParseTree *classm=new ParseTree("class","");
  
-
 classm->addChild(mustBe("keyword","class"));
             classm->addChild(mustBe("identifier",""));
  if(have("symbol","{")){
@@ -59,42 +58,7 @@ classm->addChild(mustBe("symbol","}"));
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileClassVarDec() {
-    ParseTree *classvardec=new ParseTree("classVarDec","");
-   if(!have("keyword","static")&&!have("keyword","field")){
-            ParseException ParseError;
-    throw (ParseError);
-    }
-    else{
-      if(have("keyword","static")||have("keyword","field")){
-          if(have("keyword","")){
-            ParseTree *k=mustBe("keyword","");
-            classvardec->addChild(k);
-          }
-            if(have("keyword","")){
-            ParseTree *k=mustBe("keyword","");
-            classvardec->addChild(k);
-          }
-          if(have("identifier","")){
-             ParseTree *k=mustBe("identifier","");
-            classvardec->addChild(k);
-          }
-          while(have("symbol",",")){
-           if(have("symbol",",")){
-               ParseTree *k=mustBe("symbol",",");
-            classvardec->addChild(k);
-           }
-          if(have("identifier","")){
-             ParseTree *k=mustBe("identifier","");
-            classvardec->addChild(k);
-          }
-          }
-        }
-    }
-    if(have("symbol",";")){
-         ParseTree *k=mustBe("symbol",";");
-            classvardec->addChild(k);
-    }
-return classvardec;
+return NULL;
 }
 
 /**
@@ -102,33 +66,7 @@ return classvardec;
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileSubroutine() {
-     ParseTree *subroutine=new ParseTree("subroutine","");
-   if(!have("keyword","constructor")||!have("keyword","method")||!have("keyword","function")){
-            ParseException ParseError;
-    throw (ParseError);
-    }
-    else{
-         if(have("keyword","")){
-            ParseTree *k=mustBe("keyword","");
-           subroutine->addChild(k);
-          }
-          if(have("identifier","")){
-             ParseTree *k=mustBe("identifier","");
-            subroutine->addChild(k);
-          }
-           if(have("symbol","(")){
-         ParseTree *k=mustBe("symbol","(");
-         subroutine->addChild(k);
-    }
-    subroutine->addChild(compileParameterList());
-     if(have("symbol",")")){
-         ParseTree *k=mustBe("symbol",")");
-         subroutine->addChild(k);
-    }
-       subroutine->addChild(compileSubroutineBody());
-    }
-return subroutine;
-
+return NULL;
 }
 
 /**
