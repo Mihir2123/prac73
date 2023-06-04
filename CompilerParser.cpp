@@ -234,16 +234,16 @@ ParseTree* CompilerParser::compileStatements() {
        if(have("keyword","if")){
         Statement->addChild(compileIf());
       }
-         if(have("keyword","let")){
+      else if(have("keyword","let")){
         Statement->addChild(compileLet());
       }
-         if(have("keyword","while")){
+       else  if(have("keyword","while")){
         Statement->addChild(compileWhile());
       }
-       if(have("keyword","do")){
+      else if(have("keyword","do")){
         Statement->addChild(compileDo());
       }
-       if(have("keyword","return")){
+       else if(have("keyword","return")){
         Statement->addChild(compileReturn());
       }
      
@@ -255,7 +255,18 @@ ParseTree* CompilerParser::compileStatements() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileLet() {
- 
+   ParseTree *Statementlet=new ParseTree("letStatement","");
+     Statementlet->addChild(mustBe("keyword","let"));
+       Statementlet->addChild(mustBe("identifier",""));
+       if(have("symbol","[")){
+         Statementlet->addChild(mustBe("symbol","["));
+           Statementlet->addChild(compileExpression());
+          Statementlet->addChild(mustBe("symbol","]"));
+       }
+              Statementlet->addChild(mustBe("symbol","="));
+                 Statementlet->addChild(compileExpression());
+                  Statementlet->addChild(mustBe("symbol",";"));
+            return Statementlet;
 }
 
 /**
