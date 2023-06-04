@@ -21,11 +21,11 @@ int main(int argc, char *argv[]) {
 
         try {
         CompilerParser parser(tokens);
-        ParseTree* result = parser.compileClassVarDec();
-        if (result != NULL){
+        ParseTree* result = parser.compileSubroutine();
             cout << result->tostring() << endl;
         }
-    }catch (ParseException e) {
+    
+    catch (ParseException e) {
         cout << "Error Parsing!" << endl;
     }
 }
