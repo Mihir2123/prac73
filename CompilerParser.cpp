@@ -260,7 +260,7 @@ ParseTree* CompilerParser::compileIf() {
                   Statementif->addChild(compileStatements());
              Statementif->addChild(mustBe("symbol","}"));
             while(token.size()){
-              if(have(("keyword","else"))){
+              if(have("keyword","else")){
      Statementif->addChild(mustBe("keyword","else"));
         Statementif->addChild(mustBe("symbol","{"));
                   Statementif->addChild(compileStatements());
