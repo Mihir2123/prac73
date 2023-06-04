@@ -6,7 +6,8 @@
 
 using namespace std;
 
-int main(){
+
+int main(int argc, char *argv[]) {
  list<Token*> tokens;
  
       tokens.push_back(new Token("keyword", "field"));

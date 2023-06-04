@@ -106,7 +106,7 @@ return classvardec;
  */
 ParseTree* CompilerParser::compileSubroutine() {
      ParseTree *subroutine=new ParseTree("subroutine","");
-   if(!have("keyword","constructor")||!have("keyword","method")||!have("keyword","function")){
+   if(!have("keyword","constructor")&&!have("keyword","method")&&!have("keyword","function")){
             ParseException ParseError;
     throw (ParseError);
     }
