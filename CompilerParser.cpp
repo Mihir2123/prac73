@@ -71,7 +71,7 @@ ParseTree* CompilerParser::compileClassVarDec() {
     else{
       if(have("keyword","static")||have("keyword","field")){
 
-            classvardec->addChild(mustBe("keyword",""););
+            classvardec->addChild(mustBe("keyword",""));
           
             if(have("keyword","")){
             ParseTree *k=mustBe("keyword","");
