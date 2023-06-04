@@ -231,23 +231,7 @@ if(have("keyword","")){
 ParseTree* CompilerParser::compileStatements() {
  ParseTree *Statement=new ParseTree("statements","");
      
-       if(have("keyword","if")){
-        Statement->addChild(compileIf());
-      }
-      else if(have("keyword","let")){
-        Statement->addChild(compileLet());
-      }
-       else  if(have("keyword","while")){
-        Statement->addChild(compileWhile());
-      }
-      else if(have("keyword","do")){
-        Statement->addChild(compileDo());
-      }
-       else if(have("keyword","return")){
-        Statement->addChild(compileReturn());
-      }
-     
-     return Statement;
+    return NULL;
 }
 
 /**
