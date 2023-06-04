@@ -231,20 +231,8 @@ if(have("keyword","")){
 ParseTree* CompilerParser::compileStatements() {
      ParseTree *Statement=new ParseTree("statements","");
      while(token.size()){
-      if(have("keyword","let")){
-        Statement->addChild(compileLet());
-      }
        if(have("keyword","if")){
         Statement->addChild(compileIf());
-      }
-       if(have("keyword","while")){
-        Statement->addChild(compileWhile());
-      }
-        if(have("keyword","do")){
-        Statement->addChild(compileDo());
-      }
-         if(have("keyword","return")){
-        Statement->addChild(compileReturn());
       }
      }
      return Statement;
@@ -255,7 +243,7 @@ ParseTree* CompilerParser::compileStatements() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileLet() {
-    return NULL;
+ 
 }
 
 /**
@@ -263,8 +251,25 @@ ParseTree* CompilerParser::compileLet() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileIf() {
-    return NULL;
+     ParseTree *Statementif=new ParseTree("ifStatements","");
+     Statementif->addChild(mustBe("keyword","if"));
+      Statementif->addChild(mustBe("symbol","("));
+          Statementif->addChild(compileExpression());
+            Statementif->addChild(mustBe("symbol",")"));
+             Statementif->addChild(mustBe("symbol","{"));
+                  Statementif->addChild(compileStatements());
+             Statementif->addChild(mustBe("symbol","}"));
+            while(token.size()){
+              if(have(("keyword","else"))){
+     Statementif->addChild(mustBe("keyword","else"));
+        Statementif->addChild(mustBe("symbol","{"));
+                  Statementif->addChild(compileStatements());
+             Statementif->addChild(mustBe("symbol","}"));
+              }
+            }
+            return Statementif;
 }
+
 
 /**
  * Generates a parse tree for a while statement
