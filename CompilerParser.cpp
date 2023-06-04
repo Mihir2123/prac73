@@ -7,6 +7,7 @@ using namespace std;
  */
 CompilerParser::CompilerParser(std::list<Token*> tokens) {
     token=tokens;
+    i=0;
 }
 
 /**
@@ -35,7 +36,7 @@ ParseTree* CompilerParser::compileClass() {
     throw (ParseError);
  } 
  else{
-    while(token.size()){
+    while(i<token.size()){
             classm->addChild(mustBe("keyword","class"));
   
 
@@ -50,7 +51,7 @@ ParseTree* CompilerParser::compileClass() {
  classm->addChild(compileSubroutine());
  } 
             classm->addChild(mustBe("symbol","}"));
- 
+  i++;
     }
  
  }
@@ -280,13 +281,14 @@ ParseTree* CompilerParser::compileIf() {
              Statementif->addChild(mustBe("symbol","{"));
                   Statementif->addChild(compileStatements());
              Statementif->addChild(mustBe("symbol","}"));
-            while(token.size()){
+            while(i<token.size()){
               if(have("keyword","else")){
      Statementif->addChild(mustBe("keyword","else"));
         Statementif->addChild(mustBe("symbol","{"));
                   Statementif->addChild(compileStatements());
              Statementif->addChild(mustBe("symbol","}"));
               }
+              i++;
             }
             return Statementif;
 }
@@ -326,9 +328,11 @@ ParseTree* CompilerParser::compileDo() {
  */
 ParseTree* CompilerParser::compileReturn() {
      ParseTree *Statementreturn=new ParseTree("returnStatement","");
-     Statementreturn->addChild(mustBe("keyword","while"));
-      while(token.size()){
+     Statementreturn->addChild(mustBe("keyword","return"));
+     cout<<token.size()<<endl;
+      while(i<token.size()){
 Statementreturn->addChild(compileExpression());
+i++;
       }
             Statementreturn->addChild(mustBe("symbol",";"));
             return Statementreturn;
