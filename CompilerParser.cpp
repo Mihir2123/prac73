@@ -111,10 +111,9 @@ ParseTree* CompilerParser::compileSubroutine() {
     throw (ParseError);
     }
     else{
-       if(have("keyword","")){
-            ParseTree *k=mustBe("keyword","");
-           subroutine->addChild(k);
-          }
+
+           subroutine->addChild(mustBe("keyword",""));
+         
             if(have("keyword","")||have("identifier","")){
 if(have("keyword","")){
             ParseTree *k=mustBe("keyword","");
@@ -125,7 +124,6 @@ if(have("keyword","")){
            subroutine->addChild(k);
           }
         }
-          
         subroutine->addChild(mustBe("identifier",""));
        
   
@@ -189,18 +187,14 @@ if(have("keyword","")){
  */
 ParseTree* CompilerParser::compileSubroutineBody() {
        ParseTree *subroutinebody=new ParseTree("subroutineBody","");
-       if(have("symbol","{")){
-               ParseTree *k=mustBe("symbol","{");
-          subroutinebody->addChild(k);
-           }
+          subroutinebody->addChild(mustBe("symbol","{"));
         while(have("keyword","var")){
             subroutinebody->addChild(compileClassVarDec());
         }
   subroutinebody->addChild(compileStatements());
-            if(have("symbol","}")){
-               ParseTree *k=mustBe("symbol","}");
-        subroutinebody->addChild(k);
-           }
+         
+        subroutinebody->addChild(mustBe("symbol","}"));
+           
     return subroutinebody;
 }
 
