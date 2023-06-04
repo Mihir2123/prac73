@@ -230,7 +230,7 @@ if(have("keyword","")){
  */
 ParseTree* CompilerParser::compileStatements() {
  ParseTree *Statement=new ParseTree("statements","");
-     while(token.size()){
+     
        if(have("keyword","if")){
         Statement->addChild(compileIf());
       }
@@ -246,7 +246,7 @@ ParseTree* CompilerParser::compileStatements() {
        if(have("keyword","return")){
         Statement->addChild(compileReturn());
       }
-     }
+     
      return Statement;
 }
 
