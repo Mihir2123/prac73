@@ -155,7 +155,7 @@ if(have("keyword","")){
           while(token.size()){
           parameterlist->addChild(mustBe("symbol",","));
            
-           if(have("keyword","")||have("keyword","")){
+           if(have("keyword","")||have("identifier","")){
 if(have("keyword","")){
             ParseTree *k=mustBe("keyword","");
            parameterlist->addChild(k);
