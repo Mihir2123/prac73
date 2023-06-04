@@ -119,15 +119,13 @@ ParseTree* CompilerParser::compileSubroutine() {
              ParseTree *k=mustBe("identifier","");
             subroutine->addChild(k);
           }
-           if(have("symbol","(")){
-         ParseTree *k=mustBe("symbol","(");
-         subroutine->addChild(k);
-    }
+       
+  
+         subroutine->addChild(mustBe("symbol","("));
+    
     subroutine->addChild(compileParameterList());
-     if(have("symbol",")")){
-         ParseTree *k=mustBe("symbol",")");
-         subroutine->addChild(k);
-    }
+         subroutine->addChild(mustBe("symbol",")"));
+    
        subroutine->addChild(compileSubroutineBody());
     }
 return subroutine;
