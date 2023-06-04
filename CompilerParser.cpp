@@ -243,7 +243,7 @@ ParseTree* CompilerParser::compileStatements() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileLet() {
- 
+ return NULL;
 }
 
 /**
