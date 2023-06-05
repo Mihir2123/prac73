@@ -187,18 +187,7 @@ if(have("keyword","")){
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileSubroutineBody() {
-       ParseTree *subroutinebody=new ParseTree("subroutineBody","");
-          subroutinebody->addChild(mustBe("symbol","{"));
-    while(i<token.size()){
-if(have("keyword","var")){
-subroutinebody->addChild(compileVarDec());
-}
-i++;
-      }
-         
-        subroutinebody->addChild(compileStatements());
-        subroutinebody->addChild(mustBe("symbol","}"));   
-    return subroutinebody;
+       return NULL;
 }
 
 /**
