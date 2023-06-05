@@ -189,12 +189,11 @@ if(have("keyword","")){
 ParseTree* CompilerParser::compileSubroutineBody() {
        ParseTree *subroutinebody=new ParseTree("subroutineBody","");
           subroutinebody->addChild(mustBe("symbol","{"));
-        while(have("keyword","var")){
- subroutinebody->addChild(compileVarDec());
-        }
+ while(have("keyword","var")){
+         subroutinebody->addChild(compileVarDec() );
+         }
         subroutinebody->addChild(compileStatements());
-        subroutinebody->addChild(mustBe("symbol","}"));
-           
+        subroutinebody->addChild(mustBe("symbol","}"));   
     return subroutinebody;
 }
 
