@@ -279,6 +279,7 @@ ParseTree* CompilerParser::compileIf() {
                   Statementif->addChild(compileStatements());
              Statementif->addChild(mustBe("symbol","}"));
               }
+              i++;
             }
             return Statementif;
 }
