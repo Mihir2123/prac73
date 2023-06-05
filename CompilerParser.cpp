@@ -189,9 +189,13 @@ if(have("keyword","")){
 ParseTree* CompilerParser::compileSubroutineBody() {
        ParseTree *subroutinebody=new ParseTree("subroutineBody","");
           subroutinebody->addChild(mustBe("symbol","{"));
- while(current()->getValue()=="var"){
-         subroutinebody->addChild(compileVarDec() );
-         }
+    while(i<token.size()){
+if(have("keyword","var")){
+subroutinebody->addChild(compileVarDec());
+}
+i++;
+      }
+         
         subroutinebody->addChild(compileStatements());
         subroutinebody->addChild(mustBe("symbol","}"));   
     return subroutinebody;
@@ -326,7 +330,6 @@ ParseTree* CompilerParser::compileDo() {
 ParseTree* CompilerParser::compileReturn() {
      ParseTree *Statementreturn=new ParseTree("returnStatement","");
      Statementreturn->addChild(mustBe("keyword","return"));
-     cout<<token.size()<<endl;
       while(i<token.size()){
 Statementreturn->addChild(compileExpression());
 i++;
