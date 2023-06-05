@@ -352,7 +352,7 @@ ParseTree* CompilerParser::compileExpression() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileTerm() {
-     ParseTree *term=new ParseTree("expression","");
+     ParseTree *term=new ParseTree("term","");
    if(have("integerConstant","")){
 term->addChild(mustBe("integerConstant",""));
    }
