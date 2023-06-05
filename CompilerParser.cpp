@@ -128,7 +128,7 @@ ParseTree* CompilerParser::compileSubroutine() {
             subroutine->addChild(compileParameterList());
         }
                 subroutine->addChild(mustBe("symbol",")"));
-                if(have("keyword","var")||have("keyword","let")||have("keyword","while")||have("keyword","return")||have("keyword","if")||have("keyword","do")){
+                if(have("keyword","var")||have("keyword","let")||have("keyword","while")||have("keyword","return")||have("keyword","if")||have("keyword","do")||have("symbol","{")||have("symbol","}")){
                   subroutine->addChild(compileSubroutineBody());
                 }
     }
