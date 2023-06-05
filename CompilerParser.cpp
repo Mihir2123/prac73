@@ -1,3 +1,4 @@
+
 #include "CompilerParser.h"
 using namespace std;
 #include <iostream>
@@ -187,7 +188,19 @@ if(have("keyword","")){
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileSubroutineBody() {
-       return NULL;
+       ParseTree *subroutinebody=new ParseTree("subroutineBody","");
+          subroutinebody->addChild(mustBe("symbol","{"));
+        while(i<token.size()){
+          if(have("keyword","var")){
+  subroutinebody->addChild(compileVarDec());
+          }
+          i++;
+        }
+  subroutinebody->addChild(compileStatements());
+         
+        subroutinebody->addChild(mustBe("symbol","}"));
+           
+    return subroutinebody;
 }
 
 /**
@@ -221,7 +234,7 @@ if(have("keyword","")){
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileStatements() {
- ParseTree *Statement=new ParseTree("statement","");
+ ParseTree *Statement=new ParseTree("statements","");
  if(have("keyword","let")){
      Statement->addChild(compileLet());
  }
@@ -320,6 +333,7 @@ ParseTree* CompilerParser::compileDo() {
 ParseTree* CompilerParser::compileReturn() {
      ParseTree *Statementreturn=new ParseTree("returnStatement","");
      Statementreturn->addChild(mustBe("keyword","return"));
+     cout<<token.size()<<endl;
       while(i<token.size()){
 Statementreturn->addChild(compileExpression());
 i++;
