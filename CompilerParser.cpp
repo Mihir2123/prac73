@@ -37,26 +37,20 @@ ParseTree* CompilerParser::compileClass() {
     throw (ParseError);
  } 
  else{
-    while(i<token.size()){
-            classm->addChild(mustBe("keyword","class"));
-  
 
+            classm->addChild(mustBe("keyword","class"));
             classm->addChild(mustBe("identifier",""));
- 
             classm->addChild(mustBe("symbol","{"));
  
-   if(have("keyword","static")||have("keyword","field")){
+   while(have("keyword","static")||have("keyword","field")){
  classm->addChild(compileClassVarDec());
  } 
-   if(have("keyword","constructor")||have("keyword","method")||have("keyword","function")){
+   while(have("keyword","constructor")||have("keyword","method")||have("keyword","function")){
  classm->addChild(compileSubroutine());
  } 
-            classm->addChild(mustBe("symbol","}"));
-  i++;
-    }
  
  }
-
+     classm->addChild(mustBe("symbol","}"));
  return classm;
 }
 
