@@ -337,6 +337,12 @@ ParseTree* CompilerParser::compileExpression() {
    if(have("keyword","skip")){
     expression->addChild(mustBe("keyword","skip"));
    }
+   else{
+    while(have("symbol","+")||have("symbol","-")||have("symbol","*")||have("symbol","/")||have("symbol","&")||have("symbol","|")||have("symbol","<")||have("symbol",">")||have("symbol","=")){
+      expression->addChild(mustBe("symbol",""));
+          expression->addChild(compileTerm());
+    }
+   }
    return expression;
 }
 
@@ -345,7 +351,12 @@ ParseTree* CompilerParser::compileExpression() {
  * @return a ParseTree
  */
 ParseTree* CompilerParser::compileTerm() {
-    return NULL;
+     ParseTree *term=new ParseTree("expression","");
+   if(have("integerConstant","")){
+term->addChild(mustBe("integerConstant",""));
+   }
+   return term;
+    
 }
 
 /**
