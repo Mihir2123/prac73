@@ -108,37 +108,31 @@ return classvardec;
  */
 ParseTree* CompilerParser::compileSubroutine() {
      ParseTree *subroutine=new ParseTree("subroutine","");
-   if(!have("keyword","constructor")&&!have("keyword","method")&&!have("keyword","function")){
+    if(!have("keyword","function")&&!have("keyword","method")&&!have("keyword","constructor")){
             ParseException ParseError;
     throw (ParseError);
     }
     else{
-
-           subroutine->addChild(mustBe("keyword",""));
-         
-            if(have("keyword","")||have("identifier","")){
-if(have("keyword","")){
-            ParseTree *k=mustBe("keyword","");
-             subroutine->addChild(k);
-          }
-         else{
-             ParseTree *k=mustBe("identifier","");
-           subroutine->addChild(k);
-          }
+       subroutine->addChild(mustBe("keyword",""));
+      if(have("keyword","")||have("identifier","")){
+        if(have("keyword","")){
+          subroutine->addChild(mustBe("keyword",""));
         }
-        subroutine->addChild(mustBe("identifier",""));
-       
-  
-         subroutine->addChild(mustBe("symbol","("));
-    
-    subroutine->addChild(compileParameterList());
-         subroutine->addChild(mustBe("symbol",")"));
-    
-       subroutine->addChild(compileSubroutineBody());
+        else{
+          subroutine->addChild(mustBe("identifier",""));
+        }
+      } subroutine->addChild(mustBe("identifier",""));
+           subroutine->addChild(mustBe("symbol","("));
+            subroutine->addChild(compileParameterList());
+                subroutine->addChild(mustBe("symbol",")"));
+                     subroutine->addChild(compileSubroutineBody());
     }
-return subroutine;
+   
+       return subroutine;
+    }
 
-}
+
+
 
 /**
  * Generates a parse tree for a subroutine's parameters
@@ -147,22 +141,17 @@ return subroutine;
 ParseTree* CompilerParser::compileParameterList() {
      ParseTree *parameterlist=new ParseTree("parameterList","");
    
-        if(have("keyword","")||have("keyword","")){
+        if(have("keyword","")||have("identifier","")){
 if(have("keyword","")){
-            ParseTree *k=mustBe("keyword","");
-           parameterlist->addChild(k);
+           parameterlist->addChild(mustBe("keyword",""));
           }
          else{
-             ParseTree *k=mustBe("identifier","");
-          parameterlist->addChild(k);
+          parameterlist->addChild(mustBe("identifier",""));
           }
         }
-     
-      
           parameterlist->addChild(mustBe("identifier",""));
-          while(token.size()){
+          while(have("symbol",",")){
           parameterlist->addChild(mustBe("symbol",","));
-           
            if(have("keyword","")||have("identifier","")){
 if(have("keyword","")){
             ParseTree *k=mustBe("keyword","");
@@ -173,9 +162,8 @@ if(have("keyword","")){
           parameterlist->addChild(k);
           }
         }
-          
           parameterlist->addChild(mustBe("identifier",""));
-        
+        i++;
           }
             return parameterlist;
     }
