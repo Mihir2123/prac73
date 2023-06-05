@@ -123,9 +123,14 @@ ParseTree* CompilerParser::compileSubroutine() {
         }
       } subroutine->addChild(mustBe("identifier",""));
            subroutine->addChild(mustBe("symbol","("));
+
+        if(have("keyword","")||have("identifier","")){
             subroutine->addChild(compileParameterList());
+        }
                 subroutine->addChild(mustBe("symbol",")"));
-                     subroutine->addChild(compileSubroutineBody());
+                if(have("keyword","var")||have("keyword","let")||have("keyword","while")||have("keyword","return")||have("keyword","if")||have("keyword","do")){
+                  subroutine->addChild(compileSubroutineBody());
+                }
     }
    
        return subroutine;

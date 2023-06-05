@@ -10,13 +10,17 @@ using namespace std;
 int main(int argc, char *argv[]) {
  list<Token*> tokens;
  
-
-                   tokens.push_back(new Token("integerConstant", "1"));
-                     
+tokens.push_back(new Token("keyword", "function"));
+                   tokens.push_back(new Token("keyword", "void"));
+                         tokens.push_back(new Token("identifier", "test"));
+                      tokens.push_back(new Token("symbol", "("));
+                        tokens.push_back(new Token("symbol", ")"));
+                                     tokens.push_back(new Token("symbol", "{"));
+                                                   tokens.push_back(new Token("symbol", "}"));
 
         try {
         CompilerParser parser(tokens);
-        ParseTree* result = parser.compileTerm();
+        ParseTree* result = parser.compileSubroutine();
                     cout << result->tostring() << endl;
         }
     
