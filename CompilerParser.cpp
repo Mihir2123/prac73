@@ -193,7 +193,7 @@ ParseTree* CompilerParser::compileSubroutineBody() {
         while(have("keyword","var")){
   subroutinebody->addChild(compileVarDec());
         }
-        if(have("keyword","let")||have("keyword","while")||have("keyword","return")||have("keyword","if")||have("keyword","do")){
+        while(have("keyword","let")||have("keyword","while")||have("keyword","return")||have("keyword","if")||have("keyword","do")){
   subroutinebody->addChild(compileStatements());
         }
         subroutinebody->addChild(mustBe("symbol","}"));
