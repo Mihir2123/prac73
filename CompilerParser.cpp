@@ -338,6 +338,7 @@ ParseTree* CompilerParser::compileExpression() {
     expression->addChild(mustBe("keyword","skip"));
    }
    else{
+     expression->addChild(compileTerm());
     while(have("symbol","+")||have("symbol","-")||have("symbol","*")||have("symbol","/")||have("symbol","&")||have("symbol","|")||have("symbol","<")||have("symbol",">")||have("symbol","=")){
       expression->addChild(mustBe("symbol",""));
           expression->addChild(compileTerm());
